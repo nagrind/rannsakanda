@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2022 Nagrind <https://github.com/nagrind>
+# Copyright (c) 2022-2023 Nagrind <https://github.com/nagrind>
 #
 # Permission to use, copy, modify, and distribute this software for any
 # purpose with or without fee is hereby granted, provided that the above
@@ -34,9 +34,9 @@ RUN set -x && \
   apk --no-cache upgrade && \
   apk --no-cache add ${BUILDREQ} bash bind-tools gawk git ipcalc jq python3 whois && \
   pip install aggregate6 && \
-  git clone https://github.com/nagrind/rirr-tools.git && \
+  git clone -b main --single-branch https://github.com/nagrind/rirr-tools.git && \
   cp -a rirr-tools/[a-z]* /usr/bin/ && \
-  rm -rf rirr-tools && \
+  rm -rf rirr-tools/ && \
   apk --no-cache del ${BUILDREQ}
 
 ENTRYPOINT ["/bin/bash"]
