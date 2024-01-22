@@ -36,3 +36,4 @@ jobs:
             org.opencontainers.image.revision=${{ github.sha }}
             org.label-schema.build-date=${{ steps.prep.outputs.created }}
             org.label-schema.vcs-ref=${{ github.sha }}
+          provenance: false
