@@ -32,7 +32,7 @@ LABEL maintainer="Nagrind <https://github.com/nagrind>" \
 RUN set -x && \
   export BUILDREQ="gcc musl-dev python3-dev py-pip" && \
   apk --no-cache upgrade && \
-  apk --no-cache add ${BUILDREQ} bash bind-tools gawk git ipcalc jq python3 whois && \
+  apk --no-cache add ${BUILDREQ} bash bind-tools gawk git grep ipcalc jq python3 whois && \
   pip install aggregate6 --break-system-packages && \
   git clone -b main --single-branch https://github.com/nagrind/rirr-tools.git && \
   cp -a rirr-tools/[a-z]* /usr/bin/ && \
