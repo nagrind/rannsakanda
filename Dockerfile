@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2022-2024 Nagrind <https://github.com/nagrind>
+# Copyright (c) 2022-2025 Nagrind <https://github.com/nagrind>
 #
 # Permission to use, copy, modify, and distribute this software for any
 # purpose with or without fee is hereby granted, provided that the above
@@ -31,9 +31,10 @@ LABEL maintainer="Nagrind <https://github.com/nagrind>" \
 
 RUN set -x && \
   export BUILDREQ="gcc musl-dev python3-dev py-pip" && \
+  echo "https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
   apk --no-cache upgrade && \
-  apk --no-cache add ${BUILDREQ} bash bind-tools gawk git grep ipcalc jq python3 whois && \
-  pip install aggregate6 --break-system-packages && \
+  apk --no-cache add ${BUILDREQ} bash bind-tools gawk git grep ipcalc jq python3 py3-py-radix whois && \
+  pip install aggregate6 --break-system-packages --root-user-action=ignore && \
   git clone -b main --single-branch https://github.com/nagrind/rirr-tools.git && \
   cp -a rirr-tools/[a-z]* /usr/bin/ && \
   rm -rf rirr-tools/ && \
