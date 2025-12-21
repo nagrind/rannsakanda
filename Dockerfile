@@ -30,14 +30,11 @@ LABEL maintainer="Nagrind <https://github.com/nagrind>" \
       org.label-schema.vcs-url="https://github.com/nagrind/rannsakanda"
 
 RUN set -x && \
-  export BUILDREQ="gcc musl-dev python3-dev py-pip" && \
   echo "https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
   apk --no-cache upgrade && \
-  apk --no-cache add ${BUILDREQ} bash bind-tools gawk git grep ipcalc jq python3 py3-py-radix whois && \
-  pip install aggregate6 --break-system-packages --root-user-action=ignore && \
+  apk --no-cache add aggregate6 bash bind-tools gawk git grep ipcalc jq whois && \
   git clone -b main --single-branch https://github.com/nagrind/rirr-tools.git && \
   cp -a rirr-tools/[a-z]* /usr/bin/ && \
-  rm -rf rirr-tools/ && \
-  apk --no-cache del ${BUILDREQ}
+  rm -rf rirr-tools/
 
 ENTRYPOINT ["/bin/bash"]
